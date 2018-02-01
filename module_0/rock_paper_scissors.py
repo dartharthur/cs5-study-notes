@@ -1,5 +1,10 @@
-comp = 'scissors'
-user = 'scissors'
+import random
+
+user = raw_input('Choose your weapon: ')
+comp = random.choice( ['rock', 'paper', 'scissors'] )
+
+print 'the user (you) chose', user
+print 'the comp (I) chose', comp
 
 my_win_conditions = {
     'paper': 'rock',
