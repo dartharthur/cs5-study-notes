@@ -1,0 +1,58 @@
+Empty Room
+
+Intention
+// --------------------------------------------------------------------------------------------------------
+// Navigate to north-west corner regardless of position
+// --------------------------------------------------------------------------------------------------------
+01. If Picobot is moving west and there is no wall to the west, then keep moving west.
+02. If Picobot is moving west and there is a wall to the west, then stop.
+03. If Picobot is stopped and there is a wall to the west but no wall to the north, then start moving north.
+04. If Picobot is moving north and there is no wall to the north, then keep moving north.
+05. If Picobot is stopped and there is a wall to the north and a wall to the west, then remain stopped.
+06. If Picobot is moving north and there is a wall to the north and a wall to the west, then stop.
+
+// --------------------------------------------------------------------------------------------------------
+// Once in north-west corner, start moving east
+// --------------------------------------------------------------------------------------------------------
+07. If Picobot is stopped and there is a wall to the north and to the west, then start moving east.
+
+// --------------------------------------------------------------------------------------------------------
+// Sweep east and west, moving south when blocked by a wall
+// --------------------------------------------------------------------------------------------------------
+08. If Picobot is moving east and there is no wall to the east, then keep moving east.
+09. If Picobot is moving east and there is a wall to the east, then stop.
+10. If Picobot is stopped and there is a wall to the east and no wall to the west, then start moving south.
+11. If Picobot is moving south and there is a wall to the east and no wall to the west, then start moving west.
+12. If Picobot is moving west and there is no wall to the west, then keep moving west.
+13. If Picobot is moving west and there is a wall to the west, then stop.
+14. If Picobot is stopped and there is a wall to the west, then start moving south.
+15. If Picobot is moving south and there is a wall to the west, then start moving east.
+
+
+Translation
+// --------------------------------------------------------------------------------------------------------
+// Navigate to north-west corner regardless of position
+// --------------------------------------------------------------------------------------------------------
+01. 0 **x* -> W 0
+02. 0 **W* -> X 1
+03. 1 x*W* -> N 2
+04. 2 x*** -> N 2
+05. 1 N*W* -> X 3
+06. 2 N*W* -> X 3
+
+// --------------------------------------------------------------------------------------------------------
+// Once in north-west corner, start moving east
+// --------------------------------------------------------------------------------------------------------
+07. 3 N*W* -> E 4
+
+// --------------------------------------------------------------------------------------------------------
+// Sweep east and west, moving south when blocked by a wall
+// --------------------------------------------------------------------------------------------------------
+08. 4 *x** -> E 4
+09. 4 *E** -> X 5
+10. 5 *Ex* -> S 6
+11. 6 *Ex* -> W 7
+12. 7 **x* -> W 7
+13. 7 **W* -> X 5
+14. 5 **W* -> S 6
+15. 6 **W* -> E 4
