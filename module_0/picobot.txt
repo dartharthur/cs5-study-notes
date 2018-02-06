@@ -56,3 +56,49 @@ Translation
 13. 7 **W* -> X 5
 14. 5 **W* -> S 6
 15. 6 **W* -> E 4
+
+Maze
+
+Intention
+
+01. If Picobot is moving north and there is no wall to the north and there is a wall to the east, then keep moving north.
+02. If Picobot is moving north and there is no wall to the east, then start moving east.
+03. If Picobot is moving north and there is a wall to the north and east and there is no wall to the west, then start moving west.
+04. If Picobot is moving north and there is a wall to the north, east, and west, then start moving south.
+
+05. If Picobot is moving west and there is no wall to the west and there is a wall to the north, then keep moving west.
+06. If Picobot is moving west and there is no wall to the north, then start moving north.
+07. If Picobot is moving west and there is a wall to the west and north and west and there is no wall to the south, then start moving south.
+08. If Picobot is moving west and there is a wall to the north, west, and south, then start moving east.
+
+09. If Picobot is moving south and there is no wall to the south and there is a wall to the west, then keep moving south.
+10. If Picobot is moving south and there is no wall to the west, then start moving west.
+11. If Picobot is moving south and there is a wall to the south and west, and there is no wall to the east, then start moving east.
+12. If Picobot is moving south and there is a wall to the east, west, and south, then start moving north.
+
+13. If Picobot is moving east and there is no wall to the east and there is a wall to the south, then keep moving east.
+14. If Picobot is moving east and there is no wall to the south, then start moving south.
+15. If Picobot is moving east and there is a wall to the east and south, and there is no wall to the north, then start moving north.
+16. If Picobot is moving east and there is a wall to the north, east, and south, then start moving west.
+
+Translation
+
+0 xE** -> N 0
+0 *x** -> E 3
+0 NEx* -> W 1
+0 NEWx -> S 2
+
+1 N*x* -> W 1
+1 x*** -> N 0
+1 N*Wx -> S 2
+1 NxWS -> E 3
+
+2 **Wx -> S 2
+2 **x* -> W 1
+2 *xWS -> E 3
+2 xEWS -> N 0
+
+3 *x*S -> E 3
+3 ***x -> S 2
+3 xE*S -> N 0
+3 NExS -> W 1
