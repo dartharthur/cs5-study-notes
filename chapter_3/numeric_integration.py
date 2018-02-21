@@ -65,7 +65,7 @@ def sqfracs(low, hi, N):
 # print(sqfracs(0, 10, 5))
 
 def f_of_fracs(f, low, hi, N):
-  """ returns a list of scaled fractions, f has been applied to each fractions
+  """ returns a list of scaled fractions, f has been applied to each fraction
   """
   return [ f(x) for x in scaledfracs(low, hi, N) ]
 
@@ -107,11 +107,11 @@ def c(x):
   """ c is a semicircular function of radius two """
   return (4-x**2)**0.5
 
-print(integrate(c,0,2,2))
-print(integrate(c,0,2,20))
-print(integrate(c,0,2,200))
-print(integrate(c,0,2,2000))
-print(integrate(c,0,2,20000))
+# print(integrate(c,0,2,2))
+# print(integrate(c,0,2,20))
+# print(integrate(c,0,2,200))
+# print(integrate(c,0,2,2000))
+# print(integrate(c,0,2,20000))
 
 """ Question 2
 
