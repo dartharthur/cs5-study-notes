@@ -102,14 +102,132 @@ def stringScore(S):
 def decipher(S):
   """ given a string S already shifted by some amount,
       returns, to the best of its ability, the original
-      English string, which has been rotated by some amount
+      English string
   """
   L = [ encipher(S, n) for n in range(26) ]
   # List of Tuples
   LoT = [ stringScore(x) for x in L ]
   return max(LoT, key=lambda elem:elem[1])[0]
 
-print(decipher('Bzdrzq bhogdq? H oqdedq Bzdrzq rzkzc.'))
-print(decipher('Hu lkbjhapvu pz doha ylthpuz hmaly dl mvynla '\
-       'lclyfaopun dl ohcl slhyulk.'))
-print(decipher('Onyx balks'))
+# print(decipher('Bzdrzq bhogdq? H oqdedq Bzdrzq rzkzc.'))
+# print(decipher('Hu lkbjhapvu pz doha ylthpuz hmaly dl mvynla '\
+#        'lclyfaopun dl ohcl slhyulk.'))
+# print(decipher('Onyx balks'))
+
+def count(e, L):
+  """returns the number of times that e appears in L"""
+  return len([ x for x in L if e == x ])
+
+def blsort(L):
+  """ takes in a list L and outputs a list
+      with the same elements as L, but in ascending order
+      blsort only needs to handle lists of binary digits
+  """
+  numZeroes = count(0, L)
+  numOnes = count(1, L)
+  return [ 0 for i in range(numZeroes) ] + [ 1 for i in range(numOnes) ]
+
+# print(blsort( [1, 0, 1] ))
+# L = [1, 0, 1, 0, 1, 0, 1]
+# print(blsort(L))
+
+def remOne(i, L):
+  """ given an index and a list (or string),
+      removes an element from the list at the given index
+      and returns a list (or string) of the remaining elements
+  """
+  return L[:i] + L[i + 1:]
+
+def gensort(L):
+  """ general-purpose sorting function
+      takes in a list L and should output a list
+      with the same elements as L, but in ascending order
+  """
+  if not L:
+    return []
+  
+  maxNum = max(L)
+
+  return gensort(remOne(L.index(maxNum), L)) + [ maxNum ]
+
+# print(gensort( [42, 1, 3.14] ))
+# L = [7, 9, 4, 3, 0, 5, 2, 6, 1, 8]
+# print(gensort(L))
+
+def jscore(S, T):
+  """ takes in two strings, S and T.
+      outputs the "jotto score" of S compared with T.
+      the "jotto score" is the number of characters in S that
+      are shared by T.
+  """
+  if S == '' or T == '':
+    return 0
+  
+  if S[0] in T:
+    i = T.index(S[0])
+    return 1 + jscore(S[1:], remOne(i, T))
+  else:
+    return jscore(S[1:], T)
+
+# print(jscore( 'diner', 'syrup' ))
+# print(jscore( 'geese', 'elate' ))
+# print(jscore( 'gattaca', 'aggtccaggcgc' ))
+# print(jscore( 'gattaca', '' ))
+
+def exact_change(target_amount, L):
+  """ input target_amount is a single non-negative integer value
+      input L is a list of positive integer values
+      exact_change returns True if it's possible to create target_amount
+      by adding up some-or-all of the values in L, and False if it's not possible
+  """
+  if target_amount == 0:
+    return True
+  elif target_amount < 0:
+    return False
+  elif not L:
+    return False
+
+  useit = exact_change(target_amount - L[0], L[1:])
+  loseit = exact_change(target_amount, L[1:])
+
+  return useit or loseit
+
+# print exact_change( 42, [25, 1, 25, 10, 5, 1] ), 'is True'
+# print exact_change( 42, [25, 1, 25, 10, 5] ), 'is False'
+# print exact_change( 42, [23, 1, 23, 100] ), 'is False'
+# print exact_change( 42, [23, 17, 2, 100] ), 'is True'
+# print exact_change( 42, [25, 16, 2, 15] ), 'is True'
+# print exact_change( 0, [4, 5, 6] ), 'is True'
+# print exact_change( -47, [4, 5, 6] ), 'is False'
+# print exact_change( 0, [] ), 'is True'
+# print exact_change( 42, [] ), 'is False'
+
+def LCS(S, T):
+  """ takes in two strings S and T.
+      LCS outputs the longest common subsequence (LCS) that S and T share.
+      the LCS will be a string whose letters are a subsequence of S and
+      a subsequence of T (they must appear in the same order, though not
+      necessarily consecutively, in those input strings).
+  """
+  if not S or not T:
+    return ''
+
+  if S[0] == T[0]:
+    return S[0] + LCS( S[1:], T[1:] )
+  else:
+    result1 = LCS( S[1:], T )
+    result2 = LCS( S, T[1:] )
+
+    len1 = len(result1)
+    len2 = len(result2)
+
+    if len1 > len2:
+      return result1
+    else:
+      return result2
+
+print(LCS( 'human', 'chimp' ) )
+print(LCS( 'gattaca', 'tacgaacta' ) )
+print(LCS( 'wow', 'whew' ) )
+print(LCS( '', 'whew' ))   # first input is the empty string
+print(LCS( 'abcdefgh', 'efghabcd' ) )

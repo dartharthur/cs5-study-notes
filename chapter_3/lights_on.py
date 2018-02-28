@@ -68,7 +68,7 @@ def allOnes(L):
       and returns True if all of L's elements are 1
       and returns False otherwise
   """
-  if L == []:
+  if not L:
     return True
   
   if L[0] != 1:
