@@ -160,7 +160,7 @@ def jscore(S, T):
       the "jotto score" is the number of characters in S that
       are shared by T.
   """
-  if S == '' or T == '':
+  if not S or not T:
     return 0
   
   if S[0] in T:
@@ -169,10 +169,10 @@ def jscore(S, T):
   else:
     return jscore(S[1:], T)
 
-# print(jscore( 'diner', 'syrup' ))
-# print(jscore( 'geese', 'elate' ))
-# print(jscore( 'gattaca', 'aggtccaggcgc' ))
-# print(jscore( 'gattaca', '' ))
+# print jscore( 'diner', 'syrup' ), 'is 1'
+# print jscore( 'geese', 'elate' ), 'is 2'
+# print jscore( 'gattaca', 'aggtccaggcgc' ), 'is 5'
+# print jscore( 'gattaca', '' ), 'is 0'
 
 def exact_change(target_amount, L):
   """ input target_amount is a single non-negative integer value
@@ -226,8 +226,46 @@ def LCS(S, T):
     else:
       return result2
 
-print(LCS( 'human', 'chimp' ) )
-print(LCS( 'gattaca', 'tacgaacta' ) )
-print(LCS( 'wow', 'whew' ) )
-print(LCS( '', 'whew' ))   # first input is the empty string
-print(LCS( 'abcdefgh', 'efghabcd' ) )
+# print LCS( 'human', 'chimp' ), 'is hm'
+# print LCS( 'gattaca', 'tacgaacta' ), 'is gaaca'
+# print LCS( 'wow', 'whew' ), 'is ww'
+# print LCS( '', 'whew' ), 'is '   # first input is the empty string
+# print LCS( 'abcdefgh', 'efghabcd' ), 'is abcd'
+
+def make_change(target_amount, L):
+  """ input target_amount is a single non-negative integer value
+      input L is a list of positive integer values
+      make_change returns a list of coins that add up to the target amount,
+      assuming it's possible to create target_amount,
+      by adding up some-or-all of the values in L, and False if it's not possible
+  """
+  if target_amount == 0:
+    return []
+  elif target_amount < 0:
+    return [ False ]
+  elif not L:
+    return [ False ]
+  
+  useit = [ L[0] ] + make_change(target_amount - L[0], L[1:])
+  loseit = make_change(target_amount, L[1:])
+
+  if useit[-1]:
+    return useit
+  elif loseit[-1]:
+    return loseit
+  else:
+    return [ False ]
+
+# solutions are generally correct however in the false cases,
+# I am returning a list with a single value False when I should really
+# just return False
+
+print sorted( make_change( 42, [25, 1, 25, 10, 5, 1] ) ), 'is [1, 1, 5, 10, 25]'
+print make_change( 42, [25, 1, 25, 10, 5] ), 'is False'
+print make_change( 42, [23, 1, 23, 100] ), 'is False'
+print sorted( make_change( 42, [23, 17, 2, 100] ) ), 'is [2, 17, 23]'
+print sorted( make_change( 42, [25, 16, 2, 15] ) ), 'is [2, 15, 25]'
+print make_change( 0, [4, 5, 6] ), 'is []'
+print make_change( -47, [4, 5, 6] ), 'is False'
+print make_change( 0, [] ), 'is []'
+print make_change( 42, [] ), 'is False'
