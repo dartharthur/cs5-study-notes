@@ -1,0 +1,18 @@
+#
+# Calculate the approximate area of a triangle.
+#
+# First input: base
+# Second input: height
+# Output: area
+#
+
+0	read	r1	     # Get base
+1 jeqzn r1 9     # Jump to halt if base is zero
+2	read	r2	     # Get height
+3 jeqzn r2 9     # Jump t half if height is zero
+4	mul	  r1 r1 r2 # b times h into r1
+5	setn	r2 2
+6	div	  r1 r1 r2 # Divide by 2
+7	write	r1
+8	jumpn 0
+9 halt
