@@ -24,7 +24,7 @@ def numToBinary(N):
 # print numToBinary(42), "is '101010'"
 # print numToBinary(100), "is '1100100'"
 
-def ternaryToNum(S):
+def binaryToNum(S):
   """ takes a string S and returns a number that represents that string in decimal
   """
   if S == '':
@@ -32,18 +32,18 @@ def ternaryToNum(S):
 
   # if the last digit is a '1'
   elif S[-1] == '1': 
-    return (2 * ternaryToNum(S[:-1])) + 1
+    return (2 * binaryToNum(S[:-1])) + 1
 
   else: # last digit must be '0'
-    return (2 * ternaryToNum(S[:-1])) + 0
+    return (2 * binaryToNum(S[:-1])) + 0
 
-# print ternaryToNum('100'), 'is 4'
-# print ternaryToNum('1011'), 'is 11'
-# print ternaryToNum('00001011'), 'is 11'
-# print ternaryToNum(''), 'is 0'
-# print ternaryToNum('0'), 'is 0'
-# print ternaryToNum('1100100'), 'is 100'
-# print ternaryToNum('101010'), 'is 42'
+# print binaryToNum('100'), 'is 4'
+# print binaryToNum('1011'), 'is 11'
+# print binaryToNum('00001011'), 'is 11'
+# print binaryToNum(''), 'is 0'
+# print binaryToNum('0'), 'is 0'
+# print binaryToNum('1100100'), 'is 100'
+# print binaryToNum('101010'), 'is 42'
 
 def increment(S):
   """ takes an 8-character string S of 0's and 1's and
