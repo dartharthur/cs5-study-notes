@@ -72,27 +72,71 @@ def add(S, T):
 # print add('11100', '11110'), 'is "111010"'
 # print add('10101', '10101'), 'is "101010"'
 
-def addB(S, T):
-  """ takes two string representations of binary numbers S and T
-      returns a string representing the sum of the two input strings
+# def addB(S, T):
+#   """ takes two string representations of binary numbers S and T
+#       returns a string representing the sum of the two input strings
+#   """
+#   if not len(S) or not len(T):
+#     return ''
+
+#   sum = int(S[-1]) + int(T[-1])
+
+#   if sum == 0 or sum == 1:
+#     return addB(S[:-1], T[:-1]) + str(sum)
+#   else:
+#     return str(sum - 1) + addB(S[:-1], T[:-1]) + '0'
+
+# print addB('1', '0'), 'is "1"'
+# print addB('11', '00'), 'is "11"'
+# print addB('1', '1'), 'is "10"'
+# print addB('11', '11'), 'is "110"'
+# print addB('10101', '10101'), 'is "101010"'
+
+def computeRunLength(S):
+  """ takes a binary string S where all bits are the same
+      outputs the run-length encoding for that string
   """
-  # if len(S) >= len(T):
-  #   greater = len(S)
-  # else:
-  #   greater = len(T)
-  if not len(S) or not len(T):
+  numBitsBase10 = len(S)
+  numBitsBase2 = numToBaseB(numBitsBase10, 2)
+  return S[0] + ( (7 - len(numBitsBase2)) * '0' ) + numBitsBase2
+
+# def compress(S):
+#   """ takes a binary string S of length less than or equal to 64 as input
+#       outputs a binary string that is the run-length encoding of the input string
+#   """
+#   compression = ''
+#   built = ''
+#   for i in range(len(S) - 1):
+#     if S[i] == S[i + 1]:
+#       built += S[i]
+#     else:
+#       print built
+#       built += S[i]
+#       compression += computeRunLength(built)
+#       built = ''
+#   return compression
+
+# print compress('00000000'), 'is "00001000"'
+# print compress('11111'), 'is "10000101"'
+# Stripes = '0'*16 + '1'*16 + '0'*16 + '1'*16
+# print compress(Stripes), 'is "00010000100100000001000010010000"'
+
+def translateRunLength(C):
+  """ takes a binary string C that is 8 bits long and has been compressed
+      outputs the uncompressed version of that string
+  """
+  bit = C[0]
+  num = baseBToNum(C[1:], 2)
+  return num * bit
+
+def uncompress(C):
+  """ takes a binary string C which has been compressed
+      and returns an uncompressed version of the string C
+  """
+  if not C:
     return ''
-
-  sum = int(S[-1]) + int(T[-1])
-
-  if sum == 0 or sum == 1:
-    return addB(S[:-1], T[:-1]) + str(sum)
   else:
-    return str(sum - 1) + addB(S[:-1], T[:-1]) + '0'
+    return translateRunLength(C[:8]) + uncompress(C[8:])
 
-
-
-print addB('1', '0'), 'is "1"'
-print addB('11', '00'), 'is "11"'
-print addB('1', '1'), 'is "10"'
-# print addB('11', '1'), 'is "100"'
+print uncompress('10000101'), 'is "11111"'
+print uncompress('00010000100100000001000010010000'), 'is "0000000000000000111111111111111100000000000000001111111111111111"'
