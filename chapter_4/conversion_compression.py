@@ -46,12 +46,7 @@ def baseToBase(B1, B2, s_in_B1):
   """ takes a base B1, a base B2, and a string s_in_B1 representing a number in base B1
       returns a string representing the same number in base B2
   """
-  # need to convert string in B1 to num in base 10
-  # baseBToNum
   baseTen = baseBToNum(s_in_B1, B1)
-
-  # need to convert base 10 num to string in B2
-  # numToBaseB
   return numToBaseB(baseTen, B2)
 
 # print baseToBase(2, 10, '11'), 'is "3"'
@@ -76,3 +71,28 @@ def add(S, T):
 # print add('110', '11'), 'is "1001"'
 # print add('11100', '11110'), 'is "111010"'
 # print add('10101', '10101'), 'is "101010"'
+
+def addB(S, T):
+  """ takes two string representations of binary numbers S and T
+      returns a string representing the sum of the two input strings
+  """
+  # if len(S) >= len(T):
+  #   greater = len(S)
+  # else:
+  #   greater = len(T)
+  if not len(S) or not len(T):
+    return ''
+
+  sum = int(S[-1]) + int(T[-1])
+
+  if sum == 0 or sum == 1:
+    return addB(S[:-1], T[:-1]) + str(sum)
+  else:
+    return str(sum - 1) + addB(S[:-1], T[:-1]) + '0'
+
+
+
+print addB('1', '0'), 'is "1"'
+print addB('11', '00'), 'is "11"'
+print addB('1', '1'), 'is "10"'
+# print addB('11', '1'), 'is "100"'
