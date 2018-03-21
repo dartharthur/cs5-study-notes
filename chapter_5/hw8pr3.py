@@ -1,3 +1,5 @@
+import math
+
 def menu():
   """ a function that simply prints the menu """
   print
@@ -12,6 +14,7 @@ def menu():
   print
 
 def makeList(numString):
+  """ a function that turns list represented by a string in a python list """
   numString = numString.replace('[', '')
   numString = numString.replace(']', '')
   numList = numString.split(',')
@@ -29,7 +32,74 @@ def printList(L):
   print '   ---    -----   '
   for i in range(len(L)):
     print ("%7.2f" % i), ("%7.2f" % L[i])
-    # print str(i), str(L[i])
+
+def sumList(L):
+  """ a function that sums numbers in a list and returns the total sum """
+  total = 0
+  for num in L:
+    total += num
+  return total
+
+def averagePrice(L):
+  """ a function that returns the average price of a list of stock prices """
+  return sumList(L) / len(L)
+
+def standardDev(L):
+  """ a function that returns the standard deviation of the input list of prices """
+  squares = 0
+  avg = averagePrice(L)
+  for num in L:
+    squares += (num - avg)**2
+  return math.sqrt(squares / len(L))
+
+def minDay(L):
+  """ input: list of integers (L)
+      output: list containing min price, and day price occurred, in that order
+  """
+  minPrice = None
+  minDay = None
+
+  for i in range(len(L)):
+    if not minPrice:
+      minPrice = L[i]
+      minDay = i
+    elif L[i] < minPrice:
+      minPrice = L[i]
+      minDay = i
+  return [minPrice, minDay]
+
+def maxDay(L):
+  """ input: list of integers (L)
+      output: list containing max price, and day price occurred (in that order)
+  """
+  maxPrice = None
+  maxDay = None
+
+  for i in range(len(L)):
+    if not maxPrice:
+      maxPrice = L[i]
+      maxDay = i
+    elif L[i] > maxPrice:
+      maxPrice = L[i]
+      maxDay = i
+  return [maxPrice, maxDay]
+
+# def TTPlan(L):
+#   """ input: list of integers representing stock prices (L)
+#       output: list containing the day to buy on, day to sell on, and the profit (in that order)
+#   """
+#   buyDay = None
+#   sellDay = None
+#   profit = None
+
+#   for i in range(len(L)):
+#     for j in range(i + 1, len(L)):
+#       if not buyDay:
+#         buyDay = i
+#       elif not sellDay:
+#         sellDay = i
+#         profit = L[sellDay] - L[buyDay]
+#       elif 
 
 def main():
   """ the main user-interaction loop """
@@ -46,6 +116,22 @@ def main():
 
     elif uc == '1': # we want to print the current list
       printList(L)
+
+    elif uc == '2': # we want to find the average price of the list prices
+      avg = averagePrice(L)
+      print 'The average price is', avg
+
+    elif uc == '3': # we want to find the standard deviation of the list prices
+      stdev = standardDev(L)
+      print 'The st. deviation is', stdev
+
+    elif uc == '4': # we want the min price and the day the price occurred
+      minData = minDay(L)
+      print 'The min is ', minData[0], ' on day ', minData[1]
+
+    elif uc == '5': # we want the max price and the day the price occurred
+      maxData = maxDay(L)
+      print 'The max is ', maxData[0], ' on day ', maxData[1]
 
     elif uc == '9': # we want to quit
       break
