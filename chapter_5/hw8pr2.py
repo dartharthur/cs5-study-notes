@@ -67,7 +67,3 @@ def whilePi(maxerror):
 
 # print(whilePi(0.1))
 # print(whilePi(0.01))
-
-
-
-
