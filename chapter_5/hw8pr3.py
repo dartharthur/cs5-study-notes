@@ -84,22 +84,31 @@ def maxDay(L):
       maxDay = i
   return [maxPrice, maxDay]
 
-# def TTPlan(L):
-#   """ input: list of integers representing stock prices (L)
-#       output: list containing the day to buy on, day to sell on, and the profit (in that order)
-#   """
-#   buyDay = None
-#   sellDay = None
-#   profit = None
+def TTPlan(L):
+  """ input: list of integers representing stock prices (L)
+      output: list containing the day to buy on, day to sell on, and the profit (in that order)
+  """
+  if len(L) < 2:
+    return 0
+  elif L[0] > L[1]:
+    minPriceDay = 1
+    maxPriceDay = 1
+  else:
+    minPriceDay = 0
+    maxPriceDay = 1
+  
+  maxProfitSoFar = L[maxPriceDay] - L[minPriceDay]
 
-#   for i in range(len(L)):
-#     for j in range(i + 1, len(L)):
-#       if not buyDay:
-#         buyDay = i
-#       elif not sellDay:
-#         sellDay = i
-#         profit = L[sellDay] - L[buyDay]
-#       elif 
+  for i, price in enumerate(L[2:], 2):
+    if price < L[minPriceDay]:
+      maxProfitSoFar = max(maxProfitSoFar, L[maxPriceDay] - L[minPriceDay])
+      minPriceDay = i
+      maxPriceDay = i
+    elif price > L[maxPriceDay]:
+      maxPriceDay = i
+      maxProfitSoFar = max(maxProfitSoFar, L[maxPriceDay] - L[minPriceDay])
+  
+  return [ minPriceDay, maxPriceDay, maxProfitSoFar ]
 
 def main():
   """ the main user-interaction loop """
@@ -132,6 +141,15 @@ def main():
     elif uc == '5': # we want the max price and the day the price occurred
       maxData = maxDay(L)
       print 'The max is ', maxData[0], ' on day ', maxData[1]
+    
+    elif uc == '6': # we want to show the day to buy, the day to sell, and the profit
+      plan = TTPlan(L)
+      print '** Your TTS investment strategy is to:'
+      print '** '
+      print '** Buy on day ' + str(plan[0]) + ' at price ' + str(L[plan[0]])
+      print '** Sell on day ' + str(plan[1]) + ' at price ' + str(L[plan[1]])
+      print '** '
+      print '** For a total profit of ' + str(plan[2])
 
     elif uc == '9': # we want to quit
       break
