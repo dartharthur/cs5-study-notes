@@ -1,3 +1,12 @@
+# python 2
+#
+# Homework 1, Problem 2
+# Rock, Paper, Scissors
+#
+# Name: Kevin Amirdjanian
+#
+
+
 import random
 
 user = raw_input('Choose your weapon: ')

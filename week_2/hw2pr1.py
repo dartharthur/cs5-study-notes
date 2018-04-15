@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 2, Problem 1
+# Slicing and Indexing Challenges
+#
+# Name: Kevin Amirdjanian
+#
+
 pi = [3, 1, 4, 1, 5, 9]
 e = [2, 7, 1]
 

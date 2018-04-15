@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 2, Problem 2
+# Function Fun
+#
+# Name: Kevin Amirdjanian
+#
+
 # Problem 0 (given):
 def tpl(x):
   """

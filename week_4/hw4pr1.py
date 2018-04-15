@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 4, Problem 1
+# "Lights On!"
+#
+# Name: Kevin Amirdjanian
+#
+
 import time           # provides time.sleep(0.5)
 from random import *  # provides choice([0,1]), etc.
 

@@ -1,3 +1,11 @@
+# picobot
+#
+# Homework 1, Problem 3 - 4
+# Picobot
+#
+# Name: Kevin Amirdjanian
+#
+
 Empty Room
 
 Intention

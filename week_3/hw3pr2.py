@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 3, Problem 2
+# The Sleepwalking Student
+#
+# Name: Kevin Amirdjanian
+#
+
 import random
 import time
 import sys

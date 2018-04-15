@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 3, Problem 1.5
+# Fun with Functions
+#
+# Name: Kevin Amirdjanian
+#
+
 # Problem 0
 def mult(n, m):
   """ 

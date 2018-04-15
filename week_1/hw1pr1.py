@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 1, Problem 1
+# Four Fours
+#
+# Name: Kevin Amirdjanian
+#
+
 # Create each numeric value from 0 to 9 using only four fours.
 
 print "Zero is", 4 + 4 - 4 - 4

@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 3, Problem 3
+# List Comprehensions!
+#
+# Name: Kevin Amirdjanian
+#
+
 # this gives us functions like sin and cos
 from math import *
 

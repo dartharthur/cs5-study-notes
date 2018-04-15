@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 5, Problem 1
+# Decimal and Binary Conversions
+#
+# Name: Kevin Amirdjanian
+#
+
 def isOdd(n):
   """ accepts single argument n and returns False is n is even
       and True is n is odd

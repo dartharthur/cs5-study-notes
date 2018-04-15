@@ -1,3 +1,11 @@
+# python 2
+#
+# Homework 5, Problem 2
+# Conversion and Compression
+#
+# Name: Kevin Amirdjanian
+#
+
 def numToBaseB(N, B):
   """ takes a number N and returns a string that represents that number in base B
   """
