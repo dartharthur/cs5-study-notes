@@ -169,3 +169,111 @@ def inarow_3ne( ch, r_start, c_start, A ):
 # print "inarow_3ne('O',3,0,A):  True ==", inarow_3ne('O',3,0,A)
 # print "inarow_3ne('O',3,1,A): False ==", inarow_3ne('O',3,1,A)
 # print "inarow_3ne('X',3,3,A): False ==", inarow_3ne('X',3,3,A)
+
+def inarow_Neast( ch, r_start, c_start, A, N ):
+  row_upper_bound = len(A) - 1
+  col_upper_bound = len(A[0]) - 1
+
+  if r_start > row_upper_bound or c_start + (N - 1) > col_upper_bound:
+    return False
+  
+  ch_count = N
+  col_count = c_start
+
+  while (ch_count):
+    if ch != A[r_start][col_count]:
+      return False
+    col_count += 1
+    ch_count -= 1
+
+  return True
+
+# tests of inarow_Neast
+# A = createA( 5, 5, 'XXOXXXOOOOOOXXXX XXXOOOOO')
+# print2d(A)
+# print "inarow_Neast('O',1,1,A,4):  True ==", inarow_Neast('O',1,1,A,4)
+# print "inarow_Neast('O',1,3,A,2):  True ==", inarow_Neast('O',1,3,A,2)
+# print "inarow_Neast('X',3,2,A,4): False ==", inarow_Neast('X',3,2,A,4)
+# print "inarow_Neast('O',4,0,A,5):  True ==", inarow_Neast('O',4,0,A,5)
+
+def inarow_Nsouth( ch, r_start, c_start, A, N ):
+  row_upper_bound = len(A) - 1
+  col_upper_bound = len(A[0]) - 1
+
+  if r_start + (N - 1) > row_upper_bound or c_start > col_upper_bound:
+    return False
+  
+  ch_count = N
+  row_count = r_start
+
+  while (ch_count):
+    if ch != A[row_count][c_start]:
+      return False
+    row_count += 1
+    ch_count -= 1
+
+  return True
+
+# tests of inarow_Nsouth
+# A = createA( 5, 5, 'XXOXXXOOOOOOXXXXOXXXOOOXO')
+# print2d(A)
+# print "inarow_Nsouth('X',0,0,A,5): False ==", inarow_Nsouth('X',0,0,A,5)
+# print "inarow_Nsouth('O',1,1,A,4):  True ==", inarow_Nsouth('O',1,1,A,4)
+# print "inarow_Nsouth('O',0,1,A,6): False ==", inarow_Nsouth('O',0,1,A,6)
+# print "inarow_Nsouth('X',4,3,A,1):  True ==", inarow_Nsouth('X',4,3,A,1)
+
+def inarow_Nse( ch, r_start, c_start, A, N ):
+  row_upper_bound = len(A) - 1
+  col_upper_bound = len(A[0]) - 1
+
+  if r_start > row_upper_bound or r_start + (N - 1) > row_upper_bound or c_start + (N - 1) > col_upper_bound:
+    return False
+  
+  ch_count = N
+  row_count = r_start
+  col_count = c_start
+
+  while (ch_count):
+    if ch != A[row_count][col_count]:
+      return False
+    row_count += 1
+    col_count += 1
+    ch_count -= 1
+
+  return True
+
+# tests of inarow_Nse
+# A = createA( 5, 5, 'XOO XXXOXOOOXXXXOXXXOOOXX' )
+# print2d(A)
+# print "inarow_Nse('X',1,1,A,4):  True ==", inarow_Nse('X',1,1,A,4)
+# print "inarow_Nse('O',0,1,A,3): False ==", inarow_Nse('O',0,1,A,3)
+# print "inarow_Nse('O',0,1,A,2):  True ==", inarow_Nse('O',0,1,A,2)
+# print "inarow_Nse('X',3,0,A,2): False ==", inarow_Nse('X',3,0,A,2)
+
+def inarow_Nne( ch, r_start, c_start, A, N ):
+  row_upper_bound = len(A) - 1
+  col_upper_bound = len(A[0]) - 1
+
+  if r_start > row_upper_bound or r_start - (N - 1) < 0 or c_start + (N - 1) > col_upper_bound:
+    return False
+  
+  ch_count = N
+  row_count = r_start
+  col_count = c_start
+
+  while (ch_count):
+    if ch != A[row_count][col_count]:
+      return False
+    row_count -= 1
+    col_count += 1
+    ch_count -= 1
+
+  return True
+
+# tests of inarow_Nne
+# A = createA( 5, 5, 'XOO XXXOXOOOXOXXXOXXXOOXX' )
+# print2d(A)
+# print "inarow_Nne('X',4,0,A,5):  True ==", inarow_Nne('X',4,0,A,5)
+# print "inarow_Nne('O',4,1,A,4):  True ==", inarow_Nne('O',4,1,A,4)
+# print "inarow_Nne('O',2,0,A,2): False ==", inarow_Nne('O',2,0,A,2)
+# print "inarow_Nne('X',0,3,A,1): False ==", inarow_Nne('X',0,3,A,1)
