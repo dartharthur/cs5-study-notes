@@ -121,14 +121,6 @@ def countNeighbors(row, col, A):
 
   return count
 
-A = [
-  [0,0,0,0,0],
-  [0,0,1,0,0],
-  [0,0,1,0,0],
-  [0,0,1,0,0],
-  [0,0,0,0,0],
-]
-
 def next_life_generation(A):
   """ makes a copy of A and then advances one
       generation of Conway's game of life within
@@ -139,3 +131,45 @@ def next_life_generation(A):
   height = len(A)
 
   newA = copy(A)
+
+  for row in range(1, height - 1):
+    for col in range(1, width - 1):
+      count = countNeighbors(row, col, A)
+      if count < 2:
+        newA[row][col] = 0
+      elif count > 3:
+        newA[row][col] = 0
+      elif count == 3 and A[row][col] == 0:
+        newA[row][col] = 1
+      else:
+        newA[row][col] = A[row][col]
+  
+  return newA
+
+A = [
+  [0,0,0,0,0],
+  [0,0,1,0,0],
+  [0,0,1,0,0],
+  [0,0,1,0,0],
+  [0,0,0,0,0],
+]
+A2 = next_life_generation(A)
+A3 = next_life_generation(A2)
+
+# printBoard(A)
+# print ''
+# printBoard(A2)
+# print ''
+# printBoard(A3)
+# print ''
+
+B = randomCells(8, 8)
+B2 = next_life_generation(B)
+B3 = next_life_generation(B2)
+
+printBoard(B)
+print ''
+printBoard(B2)
+print ''
+printBoard(B3)
+print ''
