@@ -2,23 +2,23 @@
 
 ## Topics
 
-### Week 1: Introduction to Computation
+### Week 01: Introduction to Computation
 
-### Week 2: Strings, Structures, and Slicing
+### Week 02: Strings, Structures, and Slicing
 
-### Week 3: Functions and Recursion
+### Week 03: Functions and Recursion
 
-### Week 4: More Recursion
+### Week 04: More Recursion
 
-### Week 5: High-Level Functions
+### Week 05: High-Level Functions
 
-### Week 6: Circuits (skipped in favor of alterative resource)
+### Week 06: Circuits (skipped in favor of alterative resource)
 
-### Week 7: Assembly Language (skipped in favor of alternative resource)
+### Week 07: Assembly Language (skipped in favor of alternative resource)
 
-### Week 8: Loops
+### Week 08: Loops
 
-### Week 9: 2D Data
+### Week 09: 2D Data
 
 ### Week 10: Objects, Classes, and Dictionaries
 
